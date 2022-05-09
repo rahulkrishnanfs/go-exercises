@@ -1,16 +1,22 @@
 package main
 
 import (
+	"customermanage/apputils"
+	"customermanage/bootstrapper"
 	"customermanage/router"
 	"net/http"
 )
 
 func main() {
-
-	router := router.InitRoutes()
+	bootstrapper.StartUp()
+	router := router.InitRoutes() // configure the routes
 	server := &http.Server{
-		Addr:    ":8080",
+		Addr:    apputils.AppConfig.Server,
 		Handler: router,
 	}
-	server.ListenAndServe()
+
+	apputils.Logger.Info("starting http server...")
+	server.ListenAndServe() //Start the http server
+	//server.ListenAndServeTLS("../certs/server.crt", "../keys/server.key") //Start the http server
+
 }
