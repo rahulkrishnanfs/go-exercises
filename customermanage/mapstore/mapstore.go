@@ -11,7 +11,7 @@ type MapStore struct {
 
 func (mapstore *MapStore) Create(customer domain.Customer) error {
 	if _, ok := mapstore.store[customer.ID]; ok {
-		return errors.New("[ERROR] Unexpected error while adding - ID Already exists in the MapStore")
+		return errors.New("unexpected error while adding - ID Already exists in the MapStore")
 	}
 	mapstore.store[customer.ID] = customer
 	return nil
@@ -23,7 +23,7 @@ func (mapstore *MapStore) Update(id string, customer domain.Customer) error {
 		mapstore.store[id] = customer
 		return nil
 	}
-	return errors.New("[ERROR] Unexpected error while adding the data - ID not found")
+	return errors.New("unexpected error while adding the data - ID not found")
 }
 
 func (mapstore *MapStore) Delete(id string) error {
@@ -31,7 +31,7 @@ func (mapstore *MapStore) Delete(id string) error {
 		delete(mapstore.store, id)
 		return nil
 	}
-	return errors.New("[ERROR] Unexpected error while deleting the data - ID doesn't exist")
+	return errors.New("unexpected error while deleting the data - ID doesn't exist")
 
 }
 
@@ -39,7 +39,7 @@ func (mapstore *MapStore) GetById(id string) (domain.Customer, error) {
 	if _, ok := mapstore.store[id]; ok {
 		return mapstore.store[id], nil
 	}
-	return domain.Customer{}, errors.New("[ERROR] Unexpected error while deleting the data - ID doesn't exist")
+	return domain.Customer{}, errors.New("unexpected error while accessing the data - ID doesn't exist")
 
 }
 

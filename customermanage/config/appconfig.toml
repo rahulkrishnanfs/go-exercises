@@ -1,0 +1,3 @@
+[appconfig]
+Server = "0.0.0.0:8080"
+LogLevel = 1
